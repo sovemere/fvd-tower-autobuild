@@ -75,58 +75,82 @@ MouseMoveRoutine:
     totalYDisplacement := 0
     
     ; Set mouse speed
-    SetMouseDelay, 4
+    SetMouseDelay, 5
     
-    Loop {
-        if (terminateLoop) {
-            terminateLoop := false  ; Reset flag
-            break
-        }
+	Click
         
+	; 37 up
+        MouseMove, currentX, currentY - (37 * yMultiplier), 0
+        currentY := currentY - (37 * yMultiplier)
+        totalYDisplacement -= (37 * yMultiplier)
         Click
-        
-        ; Step 2: 37 down and 73 right
+
+        ; 37 down and 73 right
         MouseMove, currentX + (73 * xMultiplier), currentY + (37 * yMultiplier), 0
         currentX := currentX + (73 * xMultiplier)
         currentY := currentY + (37 * yMultiplier)
         totalXDisplacement += (73 * xMultiplier)
         totalYDisplacement += (37 * yMultiplier)
         Click
-        
-        ; Step 3: 73 left/right (opposite of xMultiplier)
-        MouseMove, currentX - (73 * xMultiplier), currentY, 0
-        currentX := currentX - (73 * xMultiplier)
-        totalXDisplacement -= (73 * xMultiplier)
-        Click
-        
-        ; Step 4: 19 up and 109 right
-        MouseMove, currentX + (109 * xMultiplier), currentY - (19 * yMultiplier), 0
-        currentX := currentX + (109 * xMultiplier)
+
+	; 19 up and 37 right
+        MouseMove, currentX + (37 * xMultiplier), currentY - (19 * yMultiplier), 0
+        currentX := currentX + (37 * xMultiplier)
         currentY := currentY - (19 * yMultiplier)
-        totalXDisplacement += (109 * xMultiplier)
+        totalXDisplacement += (137 * xMultiplier)
         totalYDisplacement -= (19 * yMultiplier)
         Click
-        
-        ; Step 5: 37 up and 73 left
+
+
+    Loop {
+        if (terminateLoop) {
+            terminateLoop := false  ; Reset flag
+            break
+        }
+
+
+	; 37 up and 73 left
         MouseMove, currentX - (73 * xMultiplier), currentY - (37 * yMultiplier), 0
         currentX := currentX - (73 * xMultiplier)
         currentY := currentY - (37 * yMultiplier)
         totalXDisplacement -= (73 * xMultiplier)
         totalYDisplacement -= (37 * yMultiplier)
         Click
-        
-        ; Step 6: 37 down
+
+	; 37 down
         MouseMove, currentX, currentY + (37 * yMultiplier), 0
         currentY := currentY + (37 * yMultiplier)
         totalYDisplacement += (37 * yMultiplier)
         Click
-        
-        ; Step 7: 55 up and 37 right
+
+	; 55 up and 37 right
         MouseMove, currentX + (37 * xMultiplier), currentY - (55 * yMultiplier), 0
         currentX := currentX + (37 * xMultiplier)
         currentY := currentY - (55 * yMultiplier)
         totalXDisplacement += (37 * xMultiplier)
         totalYDisplacement -= (55 * yMultiplier)
+        Click
+
+	; 37 down and 73 right
+        MouseMove, currentX + (73 * xMultiplier), currentY + (37 * yMultiplier), 0
+        currentX := currentX + (73 * xMultiplier)
+        currentY := currentY + (37 * yMultiplier)
+        totalXDisplacement += (73 * xMultiplier)
+        totalYDisplacement += (37 * yMultiplier)
+        Click
+
+	; 73 left
+        MouseMove, currentX - (73 * xMultiplier), currentY, 0
+        currentX := currentX - (73 * xMultiplier)
+        totalXDisplacement -= (73 * xMultiplier)
+        Click
+
+	; 19 up and 109 right
+        MouseMove, currentX + (109 * xMultiplier), currentY - (19 * yMultiplier), 0
+        currentX := currentX + (109 * xMultiplier)
+        currentY := currentY - (19 * yMultiplier)
+        totalXDisplacement += (109 * xMultiplier)
+        totalYDisplacement -= (19 * yMultiplier)
         Click
         
         if (Abs(totalXDisplacement) > Abs(targetXDisplacement) || Abs(totalYDisplacement) > Abs(targetYDisplacement))
