@@ -15,11 +15,11 @@ global targetXDisplacement := 0
 global targetYDisplacement := 0
 global xMultiplier := 1    ; 1 for right, -1 for left
 global yMultiplier := 1    ; 1 for down, -1 for up
-global terminateLoop := false  ; New flag to control loop termination
+global terminateLoop := false  
 
 Hotkey, ~LButton & Shift, MouseMoveRoutine, Off
 Hotkey, ~Shift & LButton, MouseMoveRoutine, Off
-Hotkey, Esc, EscapeHandler, Off  ; Start with Escape handler disabled
+Hotkey, Esc, EscapeHandler, Off 
 
 F8::
     if (isTracking) {
@@ -29,7 +29,7 @@ F8::
         
         Hotkey, ~LButton & Shift, Off
         Hotkey, ~Shift & LButton, Off
-        Hotkey, Esc, Off  ; Disable Escape handler when deactivating
+        Hotkey, Esc, Off  
     } else {
         isTracking := true
         ToolTip, Script Activated
@@ -37,11 +37,11 @@ F8::
         
         Hotkey, ~LButton & Shift, On
         Hotkey, ~Shift & LButton, On
-        Hotkey, Esc, On  ; Enable Escape handler when activating
+        Hotkey, Esc, On  
     }
 return
 
-EscapeHandler:  ; Renamed from Esc:: to make it a proper label
+EscapeHandler:  
     terminateLoop := true
     ToolTip, Loop Terminated
     SetTimer, RemoveToolTip, -1000
@@ -67,7 +67,6 @@ MouseMoveRoutine:
     
     directionStr := (yMultiplier = 1) ? "Up" : "Down"
     directionStr .= (xMultiplier = 1) ? "right" : "left"
-    ToolTip, Moving %directionStr%
     SetTimer, RemoveToolTip, -1000
     
     MouseMove, startX, startY, 0
