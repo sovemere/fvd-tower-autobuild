@@ -43,7 +43,7 @@ return
 
 EscapeHandler:  
     terminateLoop := true
-    ToolTip, Loop Terminated
+    ToolTip, Building Halted
     SetTimer, RemoveToolTip, -1000
 return
 
@@ -77,7 +77,7 @@ MouseMoveRoutine:
     totalYDisplacement := 0
     
     ; Set mouse speed
-    SetMouseDelay, 5
+    SetMouseDelay, 3
     
     Click
         
