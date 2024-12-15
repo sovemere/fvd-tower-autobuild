@@ -1,5 +1,7 @@
 ## Tower Autobuild Macro for Fast Villager Defense
 
+tower_autobuild_macro.ahk
+
 **Note: this macro is pixel-based and only works when your AoE2 game is maximally zoomed out at 1080p resolution. The pixel amounts need to be adjusted for other resolutions.** 
 
 This macro is designed to help the player build with maximum efficiency and minimum effort by automating the placement of tower foundations in a repeating "V" pattern.
@@ -24,3 +26,12 @@ Press the Escape key to interrupt autobuilding. This is useful if you come under
 ## Known issues
 
 The autobuilding will occasionally skip tiles. This is mainly caused by lag and will be worse during laggy games, but should happen to no more than around 5% of tiles.
+
+
+## Monk Conversion Automation Macro
+
+monk_script.ahk
+
+Experimental script that allows the user to automatically deselect monks when mass converting.
+
+**Warning: Macros are prohibited in AoE2 vanilla multiplayer, particularly in ranked matches.**
