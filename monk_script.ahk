@@ -10,7 +10,7 @@ target_x := 320
 target_y := screen_height - 145  
 
 ; Toggle script on/off with = key
-=::
+0::
 script_active := !script_active
 MouseGetPos, cursor_x, cursor_y  ; Get current cursor position
 
