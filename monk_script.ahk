@@ -12,11 +12,22 @@ target_y := screen_height - 145
 ; Toggle script on/off with = key
 =::
 script_active := !script_active
+MouseGetPos, cursor_x, cursor_y  ; Get current cursor position
+
 if (script_active) {
     SoundBeep, 800, 200
+    ToolTip, Conversion Activated, %cursor_x%, %cursor_y%
+    SetTimer, RemoveToolTip, -1000  ; Remove tooltip after 1 second
 } else {
     SoundBeep, 400, 200
+    ToolTip, Conversion Deactivated, %cursor_x%, %cursor_y%
+    SetTimer, RemoveToolTip, -1000  ; Remove tooltip after 1 second
 }
+return
+
+; Function to remove the tooltip
+RemoveToolTip:
+ToolTip
 return
 
 ; Hook into right click when script is active
