@@ -21,18 +21,6 @@ Hotkey, ~LButton & Shift, MouseMoveRoutine, Off
 Hotkey, ~Shift & LButton, MouseMoveRoutine, Off
 Hotkey, Esc, EscapeHandler, Off 
 
-; Function to check if current position is within bounds
-IsWithinBounds() {
-    global currentX, currentY, startX, startY, targetXDisplacement, targetYDisplacement
-    currentDisplacementX := currentX - startX
-    currentDisplacementY := currentY - startY
-    
-    ; Check if we've exceeded bounds in either direction
-    if (Abs(currentDisplacementX) > Abs(targetXDisplacement) || Abs(currentDisplacementY) > Abs(targetYDisplacement))
-        return false
-    return true
-}
-
 F8::
     if (isTracking) {
         isTracking := false
@@ -89,17 +77,15 @@ MouseMoveRoutine:
     totalYDisplacement := 0
     
     ; Set mouse speed
-    SetMouseDelay, 3
+    SetMouseDelay, 1
     
-    if (IsWithinBounds())
-        Click
+    Click
         
     ; 37 up
     MouseMove, currentX, currentY - (37 * yMultiplier), 0
     currentY := currentY - (37 * yMultiplier)
     totalYDisplacement -= (37 * yMultiplier)
-    if (IsWithinBounds())
-        Click
+    Click
 
     ; 37 down and 73 right
     MouseMove, currentX + (73 * xMultiplier), currentY + (37 * yMultiplier), 0
@@ -107,8 +93,7 @@ MouseMoveRoutine:
     currentY := currentY + (37 * yMultiplier)
     totalXDisplacement += (73 * xMultiplier)
     totalYDisplacement += (37 * yMultiplier)
-    if (IsWithinBounds())
-        Click
+    Click
 
     ; 19 up and 37 right
     MouseMove, currentX + (37 * xMultiplier), currentY - (19 * yMultiplier), 0
@@ -116,8 +101,8 @@ MouseMoveRoutine:
     currentY := currentY - (19 * yMultiplier)
     totalXDisplacement += (37 * xMultiplier)
     totalYDisplacement -= (19 * yMultiplier)
-    if (IsWithinBounds())
-        Click
+    Click
+
 
     Loop {
         if (terminateLoop) {
@@ -131,15 +116,13 @@ MouseMoveRoutine:
         currentY := currentY - (37 * yMultiplier)
         totalXDisplacement -= (73 * xMultiplier)
         totalYDisplacement -= (37 * yMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
 
         ; 37 down
         MouseMove, currentX, currentY + (37 * yMultiplier), 0
         currentY := currentY + (37 * yMultiplier)
         totalYDisplacement += (37 * yMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
 
         ; 55 up and 37 right
         MouseMove, currentX + (37 * xMultiplier), currentY - (55 * yMultiplier), 0
@@ -147,8 +130,7 @@ MouseMoveRoutine:
         currentY := currentY - (55 * yMultiplier)
         totalXDisplacement += (37 * xMultiplier)
         totalYDisplacement -= (55 * yMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
 
         ; 37 down and 73 right
         MouseMove, currentX + (73 * xMultiplier), currentY + (37 * yMultiplier), 0
@@ -156,15 +138,13 @@ MouseMoveRoutine:
         currentY := currentY + (37 * yMultiplier)
         totalXDisplacement += (73 * xMultiplier)
         totalYDisplacement += (37 * yMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
 
         ; 73 left
         MouseMove, currentX - (73 * xMultiplier), currentY, 0
         currentX := currentX - (73 * xMultiplier)
         totalXDisplacement -= (73 * xMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
 
         ; 19 up and 109 right
         MouseMove, currentX + (109 * xMultiplier), currentY - (19 * yMultiplier), 0
@@ -172,8 +152,7 @@ MouseMoveRoutine:
         currentY := currentY - (19 * yMultiplier)
         totalXDisplacement += (109 * xMultiplier)
         totalYDisplacement -= (19 * yMultiplier)
-        if (IsWithinBounds())
-            Click
+        Click
         
         ; Small counter-movement at end of loop
         MouseMove, currentX - (2 * xMultiplier), currentY + (1 * yMultiplier), 0
